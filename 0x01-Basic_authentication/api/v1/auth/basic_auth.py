@@ -2,15 +2,11 @@
 """
 Module for authentication using Basic auth
 """
-
-
 from typing import TypeVar
 from api.v1.auth.auth import Auth
 import base64
 
 from models.user import User
-
-
 class BasicAuth(Auth):
     """_summary_
     """
@@ -86,8 +82,7 @@ class BasicAuth(Auth):
             return None
         if user_pwd is None or not isinstance(user_pwd, str):
             return None
-
-        try:
+        try;
             users = User.search({"email": user_email})
             if not users or users == []:
                 return None
@@ -97,7 +92,6 @@ class BasicAuth(Auth):
             return None
         except Exception:
             return None
-
     def current_user(self, request=None) -> TypeVar('User'):
         """_summary_
         """
@@ -111,5 +105,4 @@ class BasicAuth(Auth):
                     if email is not None:
                         return self.user_object_from_credentials(
                             email, password)
-
         return
